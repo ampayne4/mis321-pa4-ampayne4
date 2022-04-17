@@ -49,25 +49,41 @@ namespace api.Controllers
 
         [EnableCors("AnotherPolicy")]
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        // public string Get(int id)
+        // {
+        //     return "value";
+        // }
+
+        public Song Get(int id)
         {
-            return "value";
+            ReadSong read = new ReadSong();
+
+            Song mySong = read.GetOne(id);
+
+            return mySong;
         }
 
         // POST: api/Songs
+        [EnableCors("AnotherPolicy")]
         [HttpPost]
         // public void Post([FromBody] Song song)
-        public void Post([FromBody] Song song)
+        public void Post([FromBody] Song sendSong)
         {
-            // CreateSong create = new CreateSong();
-
-            // Song newSong = create.Create(song);
-
-            // return newSong;
-
+            //SongUtilDatabase util = new SongUtilDatabase();
+            CreateSong create = new CreateSong();
+            //Song mySong = new Song(){SongID = 999, SongTitle = sendSong.songTitle, SongTimestamp = DateTime.Now, Deleted = "n", Favorited = "n"};
+            //util.AddSong(mySong);
+            create.Create(sendSong);
         }
 
+        // public void Post([FromBody] string teststring)
+        // {
+        //     return "TestString";
+
+        // }
+
         // PUT: api/Songs/5
+        [EnableCors("AnotherPolicy")]
         [HttpPut("{id}")]
         //public void Put(int id, [FromBody] Song song)
         public void Put(int id, [FromBody] Song song)
@@ -76,6 +92,7 @@ namespace api.Controllers
         }
 
         // DELETE: api/Songs/5
+        [EnableCors("AnotherPolicy")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

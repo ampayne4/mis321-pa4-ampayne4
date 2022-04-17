@@ -29,13 +29,14 @@ namespace api.database
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"INSERT into songs(title, time_added, deleted) VALUES(@title, @time_added, @deleted)";
+            string stm = @"INSERT into songs(title, time_added, deleted, favorited) VALUES(@title, @time_added, @deleted, @favorited)";
 
             using var cmd = new MySqlCommand(stm, con);
 
             cmd.Parameters.AddWithValue("@title", song.SongTitle);
             cmd.Parameters.AddWithValue("@time_added", song.SongTimestamp);
             cmd.Parameters.AddWithValue("@deleted", song.Deleted);
+            cmd.Parameters.AddWithValue("@favorited", song.Favorited);
             
             cmd.Prepare();
 

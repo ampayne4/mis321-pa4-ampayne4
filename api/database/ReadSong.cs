@@ -29,7 +29,7 @@ namespace api.database
 
             while (reader.Read())
             {
-                Song temp = new Song() {SongID = reader.GetInt32(0), SongTitle = reader.GetString(1), SongTimestamp = reader.GetDateTime(2), Deleted = reader.GetString(3)};
+                Song temp = new Song() {SongID = reader.GetInt32(0), SongTitle = reader.GetString(1), SongTimestamp = reader.GetDateTime(2), Deleted = reader.GetString(3), Favorited = reader.GetString(4)};
                 songs.Add(temp);
             }
             return songs;
@@ -50,7 +50,7 @@ namespace api.database
 
             reader.Read();
 
-            return new Song(){SongID = reader.GetInt32(0), SongTitle = reader.GetString(1), SongTimestamp = reader.GetDateTime(2), Deleted = reader.GetString(3)};
+            return new Song(){SongID = reader.GetInt32(0), SongTitle = reader.GetString(1), SongTimestamp = reader.GetDateTime(2), Deleted = reader.GetString(3), Favorited = reader.GetString(4)};
         }
     }
 }
