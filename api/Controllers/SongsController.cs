@@ -71,9 +71,9 @@ namespace api.Controllers
         {
             //SongUtilDatabase util = new SongUtilDatabase();
             CreateSong create = new CreateSong();
-            //Song mySong = new Song(){SongID = 999, SongTitle = sendSong.songTitle, SongTimestamp = DateTime.Now, Deleted = "n", Favorited = "n"};
+            Song newSong = new Song(){SongTitle = sendSong.SongTitle, SongTimestamp = DateTime.Now, Deleted = "n", Favorited = "n"};
             //util.AddSong(mySong);
-            create.Create(sendSong);
+            create.Create(newSong);
         }
 
         // public void Post([FromBody] string teststring)
@@ -85,17 +85,31 @@ namespace api.Controllers
         // PUT: api/Songs/5
         [EnableCors("AnotherPolicy")]
         [HttpPut("{id}")]
+        //[HttpPut]
         //public void Put(int id, [FromBody] Song song)
         public void Put(int id, [FromBody] Song song)
         {
-            //UpdateSong update = new UpdateSong();
+            UpdateSong update = new UpdateSong();
+            update.Update(song);
+            
         }
 
         // DELETE: api/Songs/5
         [EnableCors("AnotherPolicy")]
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public void Delete(int id)
         {
+            DeleteSong delete = new DeleteSong();
+            delete.Delete(id);
         }
+
+        // // DELETE: api/Songs/5
+        // [EnableCors("AnotherPolicy")]
+        // [HttpDelete("{id}")]
+        // public void Delete(int id)
+        // {
+        //     DeleteSong delete = new DeleteSong();
+        //     delete.Delete(id);
+        // }
     }
 }
